@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { HeroSearchService } from '../../services/hero-search.service';
 import { Hero } from '../../hero';
 
 @Component({
-  moduleId: module.id,
   selector: 'hero-search',
   templateUrl: './hero-search.component.html',
   styleUrls: ['./hero-search.component.css'],
@@ -32,6 +31,7 @@ export class HeroSearchComponent implements OnInit {
   }
 
   search(term: string): void {
+    console.log("Search Term: " + term);
     this.searchTerms.next(term);
   }
 

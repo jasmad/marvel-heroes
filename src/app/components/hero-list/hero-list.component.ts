@@ -1,9 +1,8 @@
 import { Component, OnInit  } from '@angular/core';
+import { Router } from "@angular/router";
 
 import { Hero } from '../../hero';
-
 import { HeroService } from '../../services/hero.service';
-import { Router } from "@angular/router";
 
 @Component({
   selector: 'hero-list',
@@ -12,10 +11,12 @@ import { Router } from "@angular/router";
 })
 
 export class HeroListComponent implements OnInit {
-  constructor(private heroService: HeroService,
-              private router: Router) {}
+
   heroes: Hero[];
   selectedHero: Hero;
+
+  constructor(private heroService: HeroService,
+              private router: Router) {}
 
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
