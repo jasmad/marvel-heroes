@@ -6,18 +6,30 @@ import { Headers, Http} from "@angular/http";
 
 import 'rxjs/add/operator/toPromise';
 
+// import {md5} from 'blueimp-md5';
+
+
 @Injectable()
 export class HeroService {
+  private marvelBaseUrl = 'https://gateway.marvel.com/';
   private heroesUrl = 'api/heroes';
   private headers = new Headers({'Content-Type': 'application/json'});
   // private readonly heroViewEditUrl = `${this.heroesUrl}/${id}`;
 
   constructor(private http: Http) { }
 
+  getCurrentTimestamp(): number{
+    return new Date().valueOf();
+  }
+
   getHeroes(): Promise<Hero[]> {
+
     return this.http.get(this.heroesUrl)
       .toPromise()
-      .then(response => response.json().data as Hero[])
+      .then(response => {
+        console.log("getHeroes response: ", response);
+        return response.json().data as Hero[];
+      })
       .catch(this.handleError);
     // return Promise.resolve(HEROES);
   }
