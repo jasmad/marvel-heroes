@@ -11,4 +11,5 @@ export class CharacterDataWrapperModel extends ResourceDataWrapper
    * The results returned by the call.
    */
   public data: CharacterDataContainerModel;
+
 }

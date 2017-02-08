@@ -1,3 +1,18 @@
-<p>
-  character-list works!
-</p>
+<div class="container">
+  <div class="hero">
+    <h1>Character List</h1>
+    <p [innerHTML]="attributionHTML"></p>
+  </div>
+  <div class="row">
+    <div class="col-xs-18 col-sm-6 col-md-3" *ngFor="let character of characters">
+      <div class="thumbnail">
+          <img class="img-responsive" src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}" alt="{{character.name}}">
+          <div class="caption">
+            <h4>{{character.name}}</h4>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

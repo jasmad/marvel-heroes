@@ -4,7 +4,7 @@
 
 
 import {IResourceDataWrapper} from "../interfaces/IResourceDataWrapper";
-import {IResourceDataContainer} from "../interfaces/IResourceDataContainer";
+import {ResourceDataContainer} from "./ResourceDataContainer";
 
 export abstract class ResourceDataWrapper implements IResourceDataWrapper
 {
@@ -27,7 +27,7 @@ export abstract class ResourceDataWrapper implements IResourceDataWrapper
   /**
    * An HTML representation of the attribution notice for this result. Please display either this notice or the contents of the attributionText field on all screens which contain data from the Marvel Comics API.
    */
-  public attributtionHTML: string;
+  public attributionHTML: string;
   /**
    * The results returned by the call.
    */

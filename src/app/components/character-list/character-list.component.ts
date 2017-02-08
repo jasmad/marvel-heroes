@@ -5,6 +5,8 @@ import {CharacterModel} from "../../datamodel/impl/CharacterModel";
 import {Observable, Subscription} from "rxjs";
 
 import '../../rxjs-extensions';
+import {CharacterDataWrapperModel} from "../../datamodel/impl/CharacterDataWrapperModel";
+import {CharacterDataContainerModel} from "../../datamodel/impl/CharacterDataContainerModel";
 
 @Component({
   selector: 'app-character-list',
@@ -14,6 +16,7 @@ import '../../rxjs-extensions';
 export class CharacterListComponent implements OnInit {
 
   characters: CharacterModel[];
+  attributionHTML: string;
 
   constructor(private characterService: CharacterService) { }
 
@@ -23,22 +26,24 @@ export class CharacterListComponent implements OnInit {
 
   getCharacters(): void
   {
-    let ob: Observable<any> = this.characterService.getCharacters();
+    let ob: Observable<CharacterDataWrapperModel> = this.characterService.getCharacters();
     ob.subscribe(
-      stuff => console.log(stuff),
-      error => console.log("Error: ", error)
+      (stuff: CharacterDataWrapperModel) => this.processDataWrapper(stuff),//console.log("CharacterListComponent getCharacters from Service", stuff),
+      error => console.log("CharacterListComponent Error: ", error)
     );
-      // .suscribe(
-      //   response => {
-      //     console.log("CharacterListComponent characterService.getCharacters() response: ", response);
-      //   },
-      //   err => {
-      //     console.error(err);
-      //   }
-      // );
-      // .then(response => {
-      //   console.log("CharacterListComponent characterService.getCharacters() response: ", response);
-      // });
+  }
+
+  private processDataWrapper(wrapper: CharacterDataWrapperModel)
+  {
+    this.attributionHTML = wrapper.attributionHTML;
+    this.populateCharactersFromWrapper(wrapper);
+
+  }
+
+  private populateCharactersFromWrapper(wrapper: CharacterDataWrapperModel)
+  {
+    const container: CharacterDataContainerModel = (wrapper.data as CharacterDataContainerModel);
+    this.characters = container.results;
   }
 
 }
