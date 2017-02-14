@@ -9,21 +9,21 @@ import {CharacterListComponent} from "../../components/character-list/character-
 const routes : Routes = [
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/characters',
     pathMatch: 'full'
   },
-  {
-    path: 'heroes',
-    component: HeroListComponent
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent
-  },
-  {
-    path: 'detail/:id',
-    component: HeroDetailComponent
-  },
+  // {
+  //   path: 'heroes',
+  //   component: HeroListComponent
+  // },
+  // {
+  //   path: 'dashboard',
+  //   component: DashboardComponent
+  // },
+  // {
+  //   path: 'detail/:id',
+  //   component: HeroDetailComponent
+  // },
   {
     path: 'characters',
     component: CharacterListComponent

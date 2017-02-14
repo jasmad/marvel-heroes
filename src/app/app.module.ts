@@ -18,6 +18,7 @@ import { HeroService } from './services/hero.service';
 import { HeroSearchComponent } from './components/hero-search/hero-search.component';
 import { CharacterListComponent } from './components/character-list/character-list.component';
 import {CharacterService} from "./services/characters/character.service";
+import { CharacterThumbnailComponent } from './components/character-thumbnail/character-thumbnail.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import {CharacterService} from "./services/characters/character.service";
     HeroDetailComponent,
     HeroListComponent,
     HeroSearchComponent,
-    CharacterListComponent
+    CharacterListComponent,
+    CharacterThumbnailComponent
   ],
   providers: [HeroService, CharacterService],
   bootstrap: [AppComponent]

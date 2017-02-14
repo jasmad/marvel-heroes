@@ -24,12 +24,12 @@ export class CharacterListComponent implements OnInit {
     this.getCharacters();
   }
 
-  getCharacters(): void
+  getCharacters(page?: number): void
   {
-    let ob: Observable<CharacterDataWrapperModel> = this.characterService.getCharacters();
+    let ob: Observable<CharacterDataWrapperModel> = this.characterService.getCharacters(page);
     ob.subscribe(
       (stuff: CharacterDataWrapperModel) => this.processDataWrapper(stuff),//console.log("CharacterListComponent getCharacters from Service", stuff),
-      error => console.log("CharacterListComponent Error: ", error)
+      error => console.log("CharacterListComponent getCharacters Error: ", error)
     );
   }
 
@@ -37,7 +37,6 @@ export class CharacterListComponent implements OnInit {
   {
     this.attributionHTML = wrapper.attributionHTML;
     this.populateCharactersFromWrapper(wrapper);
-
   }
 
   private populateCharactersFromWrapper(wrapper: CharacterDataWrapperModel)
@@ -45,5 +44,39 @@ export class CharacterListComponent implements OnInit {
     const container: CharacterDataContainerModel = (wrapper.data as CharacterDataContainerModel);
     this.characters = container.results;
   }
+
+  // TODO: move to pagination component
+  currentPage: number = 1;
+  public onNextPage()
+  {
+    if(!this.currentPage)
+    {
+      this.currentPage=0;
+    }
+    this.currentPage++;
+    console.log("this.currentPage", this.currentPage)
+    this.getCharacters(this.currentPage);
+  }
+
+  public onPreviousPage()
+  {
+    if(!this.currentPage)
+    {
+      this.currentPage=0;
+    }
+    if((this.currentPage-1) <= 1)
+    {
+      this.currentPage = 1;
+    }
+    else
+    {
+      this.currentPage--;
+    }
+    console.log("this.currentPage", this.currentPage);
+    this.getCharacters(this.currentPage);
+  }
+
+
+
 
 }
